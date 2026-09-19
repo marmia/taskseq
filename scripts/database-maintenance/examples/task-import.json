@@ -1,0 +1,47 @@
+{
+  "areas": [
+    {
+      "name": "プリセット評価",
+      "color": "purple"
+    }
+  ],
+  "tags": [
+    "preset",
+    "review"
+  ],
+  "tasks": [
+    {
+      "title": "プリセットを評価する",
+      "area": "プリセット評価",
+      "description": "各プリセットを試奏して記録する。",
+      "children": [
+        {
+          "title": "Preset Aを評価する",
+          "workNotes": "",
+          "tags": [
+            "preset"
+          ],
+          "start": null,
+          "due": null
+        },
+        {
+          "title": "Preset Bを評価する",
+          "tags": [
+            "preset",
+            "review"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "毎日プリセットを評価する",
+      "area": "プリセット評価",
+      "start": "2026-09-04",
+      "due": null,
+      "recurrenceRule": "day",
+      "tags": [
+        "review"
+      ]
+    }
+  ]
+}

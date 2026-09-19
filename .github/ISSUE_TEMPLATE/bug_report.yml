@@ -1,0 +1,33 @@
+name: Bug report
+description: Report reproducible behavior that appears incorrect.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: Do not include credentials, private deployment details, or personal task data.
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened?
+      description: Describe the observed behavior and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide the smallest reproducible sequence.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, operating system, and relevant Taskseq revision.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add sanitized logs or screenshots if they help explain the issue.

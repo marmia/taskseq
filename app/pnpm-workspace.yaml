@@ -1,0 +1,6 @@
+# pnpm 11 project-level build allowlist. No packages key: this is not a workspace.
+allowBuilds:
+  esbuild: true
+  sharp: true
+  workerd: true
+reporter: silent

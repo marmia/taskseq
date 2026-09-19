@@ -1,0 +1,17 @@
+{
+  "tasks": [
+    {
+      "id": "REPLACE_WITH_EXPORTED_TASK_ID_A",
+      "title": "Preset Aの評価メモを修正する",
+      "description": "修正した説明",
+      "workNotes": "評価結果を追記"
+    },
+    {
+      "id": "REPLACE_WITH_EXPORTED_TASK_ID_B",
+      "title": "Preset Bを評価する",
+      "start": null,
+      "due": null,
+      "tags": []
+    }
+  ]
+}

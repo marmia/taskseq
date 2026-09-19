@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Taskseq 新規登録用JSON",
+  "description": "新規登録用JSONの入力契約。DB参照・階層制約・日付比較はJSON Schema検証後にも行う。",
+  "type": "object",
+  "required": ["tasks"],
+  "additionalProperties": false,
+  "properties": {
+    "areas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "$ref": "#/$defs/name"
+          },
+          "color": {
+            "enum": [
+              "blue",
+              "purple",
+              "green",
+              "yellow",
+              "orange",
+              "pink",
+              "brown",
+              "gray"
+            ],
+            "default": "blue"
+          }
+        }
+      }
+    },
+    "tags": {
+      "$ref": "#/$defs/tags"
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/rootTask"
+      }
+    }
+  },
+  "$defs": {
+    "nonBlank": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "allOf": [
+        {
+          "pattern": "\\S"
+        },
+        {
+          "pattern": "^[^,]*$"
+        }
+      ]
+    },
+    "taskDate": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "format": "date"
+        },
+        {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T.*(Z|[+-][0-9]{2}:[0-9]{2})$",
+          "description": "オフセット付きISO 8601日時。実在する日時かどうかはアプリと同じ日時検証で確認する。"
+        }
+      ]
+    },
+    "nullableId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/nonBlank"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "recurrenceRule": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/nonBlank"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "docs/recurrence-rule.mdの構文。日付との整合性は実行時に検証する。"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/name"
+      },
+      "description": "前後空白を除去しlowercaseへ正規化。同じ名前は1件として扱う。"
+    },
+    "rootTask": {
+      "type": "object",
+      "required": ["title"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "$ref": "#/$defs/nonBlank"
+        },
+        "description": {
+          "type": "string"
+        },
+        "workNotes": {
+          "type": "string"
+        },
+        "area": {
+          "$ref": "#/$defs/name"
+        },
+        "start": {
+          "$ref": "#/$defs/taskDate"
+        },
+        "due": {
+          "$ref": "#/$defs/taskDate"
+        },
+        "recurrenceRule": {
+          "$ref": "#/$defs/recurrenceRule"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/childTask"
+          }
+        },
+        "parentId": {
+          "$ref": "#/$defs/nullableId"
+        }
+      }
+    },
+    "childTask": {
+      "type": "object",
+      "required": ["title"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "$ref": "#/$defs/nonBlank"
+        },
+        "description": {
+          "type": "string"
+        },
+        "workNotes": {
+          "type": "string"
+        },
+        "area": {
+          "$ref": "#/$defs/name"
+        },
+        "start": {
+          "$ref": "#/$defs/taskDate"
+        },
+        "due": {
+          "$ref": "#/$defs/taskDate"
+        },
+        "recurrenceRule": {
+          "$ref": "#/$defs/recurrenceRule"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/childTask"
+          }
+        }
+      }
+    }
+  }
+}

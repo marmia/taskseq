@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Cloudflare local state and secrets
+.wrangler/
+.dev.vars
+.dev.vars.*
+
+# Local environment files
+.env
+.env.*
+!.env.example
+scripts/.reports/
+
+# projects
+handoff.md
+scripts/set-env
+work/
