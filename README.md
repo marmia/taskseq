@@ -21,7 +21,7 @@ The application is a single pnpm package under `app/`. Cloudflare Workers serves
 
 ## Requirements
 
-- Node.js 24 (`24.18.0` is pinned in the repository)
+- Node.js 24 (`24.22.1` is pinned in the repository)
 - pnpm 11
 
 ## Local development

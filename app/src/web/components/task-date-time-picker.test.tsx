@@ -42,10 +42,12 @@ function renderPicker(
 
 describe("TaskDateTimePicker", () => {
   afterEach(() => {
+    vi.useRealTimers();
     applyDisplayLanguage("en");
   });
 
   it("localizes the Japanese calendar controls and date locale", async () => {
+    vi.setSystemTime(new Date("2026-09-10T03:00:00.000Z"));
     const user = userEvent.setup();
     renderPicker({ date: "", language: "ja" });
 
@@ -351,6 +353,7 @@ describe("TaskDateTimePicker", () => {
   }, 15_000);
 
   it("moves months and keeps keyboard changes pending until close", async () => {
+    vi.setSystemTime(new Date("2026-09-10T03:00:00.000Z"));
     const user = userEvent.setup();
     const { onDateChange } = renderPicker();
     const dateButton = screen.getByRole("button", { name: "Start" });

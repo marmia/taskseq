@@ -21,7 +21,7 @@ Taskseqは、時間、Area、階層で作業を整理する個人用タスク管
 
 ## 必要な環境
 
-- Node.js 24（repositoryでは`24.18.0`を固定）
+- Node.js 24（repositoryでは`24.22.1`を固定）
 - pnpm 11
 
 ## ローカル開発
